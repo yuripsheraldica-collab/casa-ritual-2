@@ -61,6 +61,7 @@ export const media = {
       copy: "O couro cabeludo preparado recebe melhor.",
       image:
         "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=900&q=80",
+      featured: false,
     },
     {
       id: "pos",
@@ -78,6 +79,7 @@ export const media = {
       copy: "O folículo ancorou. Agora é consistência.",
       image:
         "https://images.unsplash.com/photo-1526256262350-4fb79b6fd659?auto=format&fit=crop&w=900&q=80",
+      featured: false,
     },
   ],
   products: [
