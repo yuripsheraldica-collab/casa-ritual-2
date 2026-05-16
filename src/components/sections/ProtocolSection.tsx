@@ -1,9 +1,40 @@
 "use client";
 
-import Image from "next/image";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useEffect, useRef } from "react";
 import { media } from "@/lib/content";
 
+gsap.registerPlugin(ScrollTrigger);
+
 export function ProtocolSection() {
+  const gridRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const root = gridRef.current;
+    if (!root) return;
+
+    const ctx = gsap.context(() => {
+      const cards = gsap.utils.toArray<HTMLElement>("[data-protocol]", root);
+      gsap.set(cards, { opacity: 0, y: 40 });
+
+      ScrollTrigger.batch(cards, {
+        start: "top 88%",
+        onEnter: (elements) => {
+          gsap.to(elements, {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            stagger: 0.12,
+            ease: "power3.out",
+          });
+        },
+      });
+    }, root);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <section className="section-gap section-pad bg-[var(--cream)]">
       <div className="mx-auto max-w-6xl">
@@ -12,28 +43,34 @@ export function ProtocolSection() {
           Três fases. Uma linha.
         </h2>
         <p className="mt-4 max-w-xl text-[var(--stone)]">
-          Formulacao de precisao para couro cabeludo pos-implante. Ativos lentos, sem agressao ao
-          foliculo.
+          Formulação de precisão para couro cabeludo pós-implante. Ativos lentos, sem agressão ao
+          folículo.
         </p>
 
-        <div className="mt-16 grid gap-6 md:grid-cols-3">
+        <div ref={gridRef} className="mt-16 grid gap-6 md:grid-cols-3">
           {media.protocol.map((step) => (
             <article
               key={step.id}
+              data-protocol
               className={`flex flex-col overflow-hidden bg-[var(--white)] ${
                 step.featured ? "ring-1 ring-[var(--gold)]" : "border-hairline"
               }`}
             >
-              <div className="relative aspect-[4/3]">
-                <Image src={step.image} alt={step.title} fill className="object-cover" sizes="33vw" />
+              <div className="relative flex aspect-[4/3] items-center justify-center bg-[var(--sand)]">
+                <span
+                  className="font-serif-display text-[clamp(4rem,12vw,7rem)] leading-none text-[var(--gold)]/25 select-none"
+                  aria-hidden
+                >
+                  {step.numeral}
+                </span>
               </div>
               <div className="flex flex-1 flex-col p-8">
                 <p className="label-tech">{step.code}</p>
                 <h3 className="mt-3 font-serif-display text-2xl text-[var(--ink)]">{step.title}</h3>
                 <p className="mt-3 flex-1 text-sm leading-relaxed text-[var(--stone)]">{step.copy}</p>
-                <button type="button" className="btn-gold mt-8 w-full py-3">
+                <a href="#contato" className="btn-gold mt-8 block w-full py-3 text-center">
                   Ver fase
-                </button>
+                </a>
               </div>
             </article>
           ))}
