@@ -1,5 +1,6 @@
 "use client";
 
+import { SiteFooter } from "@/components/layout/SiteFooter";
 import { CTASection } from "./CTASection";
 import { HeroSection } from "./HeroSection";
 import { IngredientsSection } from "./IngredientsSection";
@@ -20,6 +21,7 @@ export function Sections() {
       <ShopSection />
       <SocialSection />
       <CTASection />
+      <SiteFooter />
     </div>
   );
 }
