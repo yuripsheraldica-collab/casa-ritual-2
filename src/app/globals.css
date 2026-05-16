@@ -1,0 +1,73 @@
+@import "tailwindcss";
+@import "lenis/dist/lenis.css";
+
+:root {
+  --cream: #f7f4ef;
+  --white: #ffffff;
+  --ink: #1a1814;
+  --stone: #7a7670;
+  --gold: #b8956a;
+  --sand: #e8e4dc;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--font-inter), system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+.font-serif-display {
+  font-family: var(--font-cormorant), ui-serif, Georgia, serif;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+}
+
+.section-pad {
+  padding-left: max(2.5rem, 5vw);
+  padding-right: max(2.5rem, 5vw);
+}
+
+.section-gap {
+  padding-top: clamp(7.5rem, 14vh, 10rem);
+  padding-bottom: clamp(7.5rem, 14vh, 10rem);
+}
+
+.border-hairline {
+  border: 0.5px solid var(--sand);
+}
+
+.btn-gold {
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  background: transparent;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  transition:
+    background 0.4s ease,
+    color 0.4s ease;
+}
+
+.btn-gold:hover {
+  background: var(--gold);
+  color: var(--cream);
+}
+
+.label-tech {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--stone);
+}
